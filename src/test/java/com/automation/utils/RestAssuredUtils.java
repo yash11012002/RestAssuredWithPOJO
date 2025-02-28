@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class RestAssuredUtils {
 
     static RequestSpecification requestSpecification= RestAssured.given();
-    static Response response;
+    public static Response response;
     static String endPoint;
 
     public static void setEndPoint(String endPoint){

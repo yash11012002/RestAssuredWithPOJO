@@ -8,9 +8,10 @@ Feature: Verify HTTP Request
     When user store "id" into "config.id"
     Then verify "id" is same as "config.id"
     When user set endpoint with id "/users/"
-    And set request body from file "createBody.json" with "name" value "Arjun Chutiya"
+    And set request body from file "createBody.json" with "name" value "Yash ki chedh"
     When user call put HTTP request
     Then verify status code 200
+    And verify response schema is same as "put_response_schema.json"
     When user call delete HTTP request
     Then verify status code 200
     When user call get HTTP request

@@ -2,8 +2,10 @@ package com.automation.steps;
 
 import com.automation.utils.ConfigReader;
 import com.automation.utils.RestAssuredUtils;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import org.junit.Assert;
 
 public class ResponseSteps {
@@ -24,4 +26,8 @@ public class ResponseSteps {
         Assert.assertEquals(RestAssuredUtils.getDataFromJsonPath(jsonId),ConfigReader.getConfigValue(configId));
     }
 
+    @And("verify response schema is same as {string}")
+    public void verifyResponseSchemaIsSameAs(String filename) {
+        RestAssuredUtils.response.then().assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("data/"+filename));
+    }
 }
